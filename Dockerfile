@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 RUN mkdir -p /opt/ibm && \
-    curl -o /opt/ibm/db2cli.tar.gz https://path_to_your_driver/db2cli.tar.gz && \
+    curl -o /opt/ibm/db2cli.tar.gz ibm_data_server_driver_for_odbc_cli_linuxx64_v11.1.tar.gz && \
     tar -xzf /opt/ibm/db2cli.tar.gz -C /opt/ibm && \
     rm /opt/ibm/db2cli.tar.gz && \
     echo "/opt/ibm" > /etc/ld.so.conf.d/db2.conf && \
