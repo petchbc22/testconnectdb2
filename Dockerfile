@@ -7,6 +7,13 @@ WORKDIR /usr/src/app
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
+RUN mkdir -p /opt/ibm && \
+    curl -o /opt/ibm/db2cli.tar.gz https://path_to_your_driver/db2cli.tar.gz && \
+    tar -xzf /opt/ibm/db2cli.tar.gz -C /opt/ibm && \
+    rm /opt/ibm/db2cli.tar.gz && \
+    echo "/opt/ibm" > /etc/ld.so.conf.d/db2.conf && \
+    ldconfig
+
 # Install project dependencies
 RUN npm install
 
