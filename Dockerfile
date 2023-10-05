@@ -13,11 +13,11 @@ COPY v11.5.8_linuxx64_odbc_cli.tar.gz  .
 
 
 
-RUN tar -xzf v11.5.8_linuxx64_dsdriver.tar.gz -C /app && \
+RUN tar -xzf v11.5.8_linuxx64_dsdriver.tar.gz -C /usr/src/app && \
     rm v11.5.8_linuxx64_dsdriver.tar.gz
 
 
-RUN tar -xzf v11.5.8_linuxx64_odbc_cli.tar.gz -C /app && \
+RUN tar -xzf v11.5.8_linuxx64_odbc_cli.tar.gz -C /usr/src/app && \
     rm v11.5.8_linuxx64_odbc_cli.tar.gz
     
 # Install project dependencies
