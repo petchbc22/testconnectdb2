@@ -7,13 +7,19 @@ WORKDIR /usr/src/app
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
-RUN mkdir -p /opt/ibm && \
-    curl -o /opt/ibm/db2cli.tar.gz https://public.dhe.ibm.com/ibmdl/export/pub/software/data/db2/drivers/odbc_cli/linuxx64_odbc_cli.tar.gz && \
-    tar -xzf /opt/ibm/db2cli.tar.gz -C /opt/ibm && \
-    rm /opt/ibm/db2cli.tar.gz && \
-    echo "/opt/ibm" > /etc/ld.so.conf.d/db2.conf && \
-    ldconfig
+COPY v11.5.8_linuxx64_dsdriver.tar.gz  .
 
+COPY v11.5.8_linuxx64_odbc_cli.tar.gz  .
+
+
+
+RUN tar -xzf v11.5.8_linuxx64_dsdriver.tar.gz -C /app && \
+    rm v11.5.8_linuxx64_dsdriver.tar.gz
+
+
+RUN tar -xzf v11.5.8_linuxx64_odbc_cli.tar.gz -C /app && \
+    rm v11.5.8_linuxx64_odbc_cli.tar.gz
+    
 # Install project dependencies
 RUN npm install
 
